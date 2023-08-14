@@ -1,0 +1,60 @@
+{% extends 'layouts.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<title> Buy Product</title>
+{%endblock%}
+
+{% block main_content%}
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+
+    <div class="col-md-5 border border-1 border-primary p-4">
+        <div class="text-center text-muted">
+            {% if messages %}
+                    {% for msg in messages %}
+                        {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <div class="alert alert-success">
+                                {{msg}}
+                        </div>
+                        {% endif %}
+                        {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        <div class="alert alert-danger">
+                                {{msg}}
+
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                <h1>You are being redirected to esewa Please wait</h1>
+            <h1>Buy Product</h1>
+        </div>
+        <form action="https://uat.esewa.com.np/epay/main" method="POST" style="display:none;" id="esewa_form">
+            <input value="{{order.total_price}}" name="tAmt" type="hidden">
+            <input value="{{order.total_price}}" name="amt" type="hidden">
+            <input value="0" name="txAmt" type="hidden">
+            <input value="0" name="psc" type="hidden">
+            <input value="0" name="pdc" type="hidden">
+            <input value="EPAYTEST" name="scd" type="hidden">
+            <input value="ee2c3ca1-696b-4cc5-a6be-2c40d929d453" name="pid" type="hidden">
+            <input value="http://merchant.com.np/page/esewa_payment_success?q=su" type="hidden" name="su">
+            <input value="http://merchant.com.np/page/esewa_payment_failed?q=fu" type="hidden" name="fu">
+            <input value="Submit" type="submit">
+            </form>
+
+    </div>
+    </div>
+
+</div>
+
+<script>
+    setTimeout(()=>{
+        document.getElementById("esewa_form").submit()
+    },2000)
+</script>
+{%endblock%}
+<!-- user=req.user
+d=User.objects.filter(user=user.is_staff)
+
+-->

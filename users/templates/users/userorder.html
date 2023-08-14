@@ -1,0 +1,41 @@
+{% extends "frontend.html"%} {% load static %} {%block title%}
+<title>User Order</title>
+{% endblock %} 
+{% block main_content %}
+    {% for msg in messages %}
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-success">
+                {{msg}}
+            </div>
+        {% endif %}
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-danger">
+                {{msg}}
+
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <table class="table table-bordered table-hover text-center">
+        <tr>
+            <th> Product Image</th>
+            <th> Product Name</th>
+            <th>Total Price</th>
+            <th>Quantity</th>
+            <th>Payment Method</th>
+            <th>Date</th>
+        </tr>
+        {%for p in order%}
+        <tr>
+            <td> <img src="/{{p.product.image_url}}" alt="" height="200" width="200"></td>
+            <td> {{p.product.product_name}}</td>
+            <td> {{p.total_price}}</td>
+            <td> {{p.quantity}}</td>
+            <td > {{p.payment_method}}</td>
+            <td>{{p.order_date}}</td>
+        </tr>
+        {% endfor %}
+    
+    </table>
+
+{%endblock%}

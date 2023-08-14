@@ -1,0 +1,27 @@
+{% extends 'layouts.html' %}
+
+
+{% block title %}
+<title>Show Category</title>
+{% endblock %}
+
+{% block main_content %}
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Product Category</th>
+        <th>Action</th>
+    </tr>
+    {% for c in category %}
+    <tr>
+        <td>{{c.category_name}}</td>
+        <td>
+           <a href="/product/update_category/{{c.id}}"> <button class="btn btn-primary">Update</button></a>
+           <a href="/product/delete_category/{{c.id}}"> <button class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}
+

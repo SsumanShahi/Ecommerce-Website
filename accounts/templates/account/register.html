@@ -1,0 +1,50 @@
+{% extends 'frontend.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<title> Register</title>
+{%endblock%}
+
+{% block main_content%}
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+
+    <div class="col-md-5 border border-1 border-primary p-4">
+        <div class="text-center text-muted">
+            {% if messages %}
+                    {% for msg in messages %}
+                        {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <div class="alert alert-success">
+                                {{msg}}
+                        </div>
+                        {% endif %}
+                        {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        <div class="alert alert-danger">
+                                {{msg}}
+
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            <h1>New Register</h1>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form|crispy}}
+            <div class="text-center mt-3 md-3">
+                <input type="submit" class="btn btn-primary" value="Regsiter">
+            </div>
+        </form>
+        <div>
+        <p> already registered...</p>
+        <div class="'text-center mt-3 md-3">
+            <a href="/login">
+            <input type="submit" class="'btn btn-primary" value="Sign in"> </div>
+            </a>
+        </div>
+
+    </div>
+    </div>
+
+</div>
+{%endblock%}
